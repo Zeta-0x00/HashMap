@@ -4,18 +4,19 @@
 #include <string>
 
 using namespace std;
-const int TABLE_SIZE = 99999999999999999999999999999999999999999999999999999999999999999999999999999999999;
+const uint64_t TABLE_SIZE = 9999999999999999999;
+template<class T>
 class HashMap 
 {
 private:
-    HashEntry **table;
+    HashEntry<T> **table;
 public:
     HashMap() 
     {
         table = new HashEntry*[TABLE_SIZE];
         for (int i = 0; i < TABLE_SIZE; i++) { table[i] = NULL; }
     }
-    int get(int key) 
+    int get(int &key) 
     {
         int hash = (key % TABLE_SIZE);
         while (table[hash] != NULL && table[hash]->getKey() != key)
@@ -25,7 +26,7 @@ public:
         else
         { return table[hash]->getValue(); }
     }
-    void put(int key, int value) 
+    void put(int key, T value) 
     {
         int hash = (key % TABLE_SIZE);
         while (table[hash] != NULL && table[hash]->getKey() != key)

@@ -1,13 +1,14 @@
 #ifndef HASHENTRY_H
 #define HASHENTRY_H
 
+template<class T>
 class HashEntry 
 {
 private:
     int key;
-    int value;
+    T value;
 public:
-    HashEntry(int &key, int &value) 
+    HashEntry(int &key, T &value) 
     {
         this->key = key;
         this->value = value;
