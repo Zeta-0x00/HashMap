@@ -4,7 +4,7 @@
 #include <string>
 
 using namespace std;
-const uint64_t TABLE_SIZE = 9999999999999999999;
+const long TABLE_SIZE = 12725525;
 template<class T>
 class HashMap 
 {
@@ -13,16 +13,16 @@ private:
 public:
     HashMap() 
     {
-        table = new HashEntry*[TABLE_SIZE];
+        table = new HashEntry<T>*[TABLE_SIZE];
         for (int i = 0; i < TABLE_SIZE; i++) { table[i] = NULL; }
     }
-    int get(int &key) 
+    T get(int &key) 
     {
         int hash = (key % TABLE_SIZE);
         while (table[hash] != NULL && table[hash]->getKey() != key)
         { hash = (hash + 1) % TABLE_SIZE; }
         
-        if (table[hash] == NULL) { return -1; }
+        if (table[hash] == NULL) { return NULL; }
         else
         { return table[hash]->getValue(); }
     }
@@ -33,7 +33,7 @@ public:
             {hash = (hash + 1) % TABLE_SIZE;}
         if (table[hash] != NULL)
             { delete table[hash]; }
-        table[hash] = new HashEntry(key, value);
+        table[hash] = new HashEntry<T>(key, value);
     }
     ~HashMap() 
     {

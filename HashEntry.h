@@ -14,6 +14,6 @@ public:
         this->value = value;
     }
     int getKey() { return this->key;}
-    int getValue() {  return this->value;}
+    T getValue() {  return this->value;}
 };
 #endif //!HASHENTRY_H
